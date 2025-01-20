@@ -1,0 +1,117 @@
+.inner.User{
+    width: 100%;
+    height: 800px;
+    padding: 3rem 4rem;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 20% 40% 1fr;
+    gap: 4rem;
+}
+
+.user_image{
+    width: 90%;
+    max-height: 250px;
+    border-radius: 50%;
+}
+
+.user_name{
+    font-size: 30px;
+}
+
+.user_location{
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user_location p{
+    font-size: 20px;
+}
+
+.user_location img{
+    background-color: var(--accent2);
+    height: 25px;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.user_activities{
+    margin-top: 2rem;
+}
+
+
+.user_activities p{
+    font-size: 20px;
+    margin-bottom: 2rem;
+}
+
+.activities{
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.user-approx-location{
+    margin-top: 2rem;
+    width: 100%;
+    border: white solid 1px;
+    height: 300px;
+    border-radius: 20px;
+}
+
+.activities a{
+    text-decoration: none;
+    font-size: 18px;
+    background-color: var(--glass_back);
+    border: var(--accent) 1px solid;
+    color: white;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.user_bio{
+    margin-top: 2rem;
+    max-width: 600px;
+    font-size: 18px;
+}
+
+
+.mutuals .title{
+    font-size: 20px;
+    margin-bottom: 1rem;
+}
+
+.mutual-cards{
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.mutual-card img{
+    width:80px;
+    border-radius: 50%;
+}
+
+.mutual-card{
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+    padding: 1rem .5rem;
+    border-radius: 20px;
+    transition: all .3s ease-in-out;
+    width: fit-content;
+    text-align: center;
+    justify-items: center;
+    background-color: var(--black-glass);
+    width: 180px;
+    transition: all .2s ease-in-out;
+}
+.mutual-card:hover{
+    transition: all .2s ease-in-out;
+    margin-top: -.3rem;
+}

@@ -1,0 +1,88 @@
+.inner.search{
+    padding: 2rem;
+}
+.search-bar-box{
+    height: 50px;
+    width: 600px;
+    position: relative;
+}
+
+
+.search-bar-box button{
+    border: none;
+    outline: none;
+    background: none;
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.search-bar-box img{
+    height: 30px;
+
+}
+
+.search-bar-box input::placeholder{
+    font-size: 15px;
+}
+
+
+
+.search-bar-box input{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    outline:none;
+    border: none;
+    padding: 0 0 0 1rem;
+    font-size: 20px;
+}
+
+.search-results{
+    margin-top: 3rem;
+}
+
+
+.search-results .title{
+    font-size: 20px;
+    margin-bottom: 1rem;
+}
+
+.search-result-cards{
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.search-result-card img{
+    width:80px;
+    border-radius: 50%;
+}
+
+.search-result-card{
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+    padding: 1rem .5rem;
+    border-radius: 20px;
+    text-align: center;
+    justify-items: center;
+    background-color: var(--black-glass);
+    width: 180px;
+    transition: all .2s ease-in-out;
+}
+
+.search-result-card:hover{
+    transition: all .2s ease-in-out;
+    margin-top: -.3rem;
+}
+
+.search-result-location{
+    font-size: 14px;
+}

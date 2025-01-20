@@ -1,0 +1,326 @@
+.content .inner.account{
+    background-color: var(--black-glass);
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.edit-profile{
+    font-size: 30px;
+    font-weight: 200;
+    padding-left: 1rem;
+}
+
+.edit-profile-box{
+    padding: 2rem;
+    border-radius: 20px;
+    margin-top: 1rem;
+}
+
+.image-upload{
+    height: 40px;
+    width: 40px;
+    padding: 10px;
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    opacity: 0;
+}
+
+.image-upload::-webkit-file-upload-button{
+    background-color: white;
+    padding: 10px;
+    font-family: var(--font2);
+    border-radius: 5px ;
+    border: none ;
+    font-size: 16px;
+    font-weight: 400;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.profile-picture{
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    height: 250px;
+    padding-bottom: 1rem;
+    border-bottom: var(--glass_back) 2px solid;
+}
+
+.profile-picture-box{
+    width: 200px;
+    height: 200px;
+    position: relative;
+    border-radius: 50%;
+}
+
+.profile-pic{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    border: var(--glass_back) 10px solid;
+}
+
+.edit{
+    background-color: var(--accent2);
+    padding: 5px;
+    border-radius: 10px;
+    position: absolute;
+    right:0;
+    bottom:-10px;
+    cursor:pointer;
+}
+
+.save-image{
+    align-items: center;
+    background-color: var(--glass_back);
+    width: fit-content;
+    color: white;
+    padding: 10px;
+    gap: 10px;
+    border-radius: 10px;
+    /*position: absolute;*/
+    /*right: -100%;*/
+    /*bottom: 2rem;*/
+    display: flex;
+}
+
+.current-file{
+    /*position: absolute;*/
+    /*bottom: -10px;*/
+    color: var(--accent);
+    /*right: -80%;*/
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+#current-file{
+    font-size: 13px;
+}
+
+.upload-box{
+    display:none;
+    flex-direction: column;
+    gap:20px;
+}
+
+.close-upload{
+    border-radius: 50%;
+    padding: 0 5px;
+    display: flex;
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.upload-image-button{
+    padding:5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-upload:hover, .upload-image-button:hover{
+    background-color: var(--accent);
+    color:black;
+}
+
+
+.form-box{
+    margin-top: 2rem;
+    padding: 2rem ;
+    background-color: var(--black-glass);
+    border-radius: 20px;
+}
+
+.form-title{
+    font-size: 20px;
+}
+
+.form-box .top{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.edit-info{
+    display: flex;
+    align-items:center ;
+    gap: 10px;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--accent2);
+    cursor:pointer;
+}
+
+.save-info{
+    display: none;
+    cursor:pointer;
+    align-items:center ;
+    gap: 10px;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--accent2);
+}
+
+
+.edit-info img{
+    height: 20px;
+}
+
+.editable-form{
+    margin-top: 1rem;
+}
+
+.personal-form{
+    display: grid;
+    grid-template-columns: 20% 20% 20% 1fr;
+    gap: 3rem;
+}
+
+.location-form{
+    display: flex;
+    gap: 3rem;
+}
+
+.editable-form .form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.editable-form .form-group label{
+    font-size: 18px;
+    font-weight: 200;
+}
+
+
+.editable-form .form-group input, textarea{
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: var(--accent);
+    outline: none;
+}
+
+
+.editable-form .form-group.active input{
+    background: var(--glass_back);
+    color: white ;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+
+.editable-form .form-group{
+    max-width: 1500px;
+}
+
+.editable-form .form-group textarea{
+    max-width: 100%;
+    resize: vertical;
+    min-height: 3rem;
+}
+
+
+
+.editable-form .form-group input::placeholder,.editable-form .form-group textarea::placeholder{
+    color: white;
+    font-size: 18px;
+}
+
+.activities{
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+
+.activity {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background-color: var(--glass_back);
+    padding:10px 15px;
+    border-radius: 15px;
+    border: solid 4px var(--accent);
+}
+
+.activity input{
+    background-color: transparent;
+    color: white;
+    border: none;
+    width: 100px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.activity-button{
+    color: black;
+    background: white;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    padding:0 5px;
+    border-radius: 50% ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#personal-response-message, #location-response-message, #bio-response-message{
+  display: none;
+    color: var(--accent);
+}
+
+
+.activity-button:hover{
+    background: var(--accent);
+}
+
+
+.Activities-form .form-group{
+    margin-top: 30px;
+}
+
+
+
+.activity_select{
+    width: 350px;
+    border: none;
+    border-radius: 10px;
+    color:white;
+    padding: 10px;
+    font-size: 15px;
+    background-color: var(--glass_back);
+    outline: var(--accent) 2px solid;
+}
+
+.activity_select option{
+    color: white;
+    font-size: 15px;
+    padding: 10px;
+    background-color: rgb(44, 46, 51);
+    outline: none;
+    border: none;
+}
+
+.add-sport{
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
+.activity-form-group{
+    margin-top: 2rem;
+}
+
+#response-message{
+    color: var(--accent);
+}
+
+
