@@ -7,6 +7,7 @@ import com.capstone.CaseStudy.database.entity.Activity;
 import com.capstone.CaseStudy.database.entity.User;
 import com.capstone.CaseStudy.database.entity.UserActivity;
 import com.capstone.CaseStudy.security.AuthenticatedUserService;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class IndexController {
         response.setViewName("index");
 
         User loggedInUser = authenticatedUserService.loadCurrentUser();
-
+        String apiKey = Dotenv.load().get("API_KEY");
 //        find current users activities
         List<Activity> activities = userActivityDAO.findUserActivities(loggedInUser);
         Integer userCount = userDAO.findAll().size();
@@ -68,7 +69,7 @@ public class IndexController {
           List<Activity> activityList = userActivityDAO.findUserActivities(user);
           userActivityMap.put(user, activityList);
         }
-
+        response.addObject("apiKey", apiKey);
         response.addObject("activeChats", activeChats);
         response.addObject("suggestedUserActivities", userActivityMap);
         response.addObject("suggestedUsers", suggestedUsers);

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
+import io.github.cdimascio.dotenv.Dotenv;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -57,13 +57,13 @@ public class UserController {
        User user = userDAO.findById(userId);
         Set<User> loggedInUserChats = messageDAO.findActiveChats(loggedInUser);
         Set<User> userChats = messageDAO.findActiveChats(user);
-
+        String apiKey = Dotenv.load().get("API_KEY");
         userChats.retainAll(loggedInUserChats);
         userChats.remove(loggedInUser);
         userChats.remove(user);
         //        find current users activities
         List<Activity> activities = userActivityDAO.findUserActivities(user);
-
+        response.addObject("apiKey", apiKey);
         response.addObject("mutualChats", userChats);
         response.addObject("user", user);
         response.addObject("activities", activities);

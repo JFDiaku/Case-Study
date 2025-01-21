@@ -74,7 +74,7 @@
 
 </div>
 <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+        src="https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap&v=weekly"
         defer
 ></script>
 <script>
