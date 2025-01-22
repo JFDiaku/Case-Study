@@ -2,7 +2,9 @@ package com.capstone.CaseStudy.security;
 
 
 import com.capstone.CaseStudy.database.dao.UserDAO;
+import com.capstone.CaseStudy.database.dao.UserLogDAO;
 import com.capstone.CaseStudy.database.entity.User;
+import com.capstone.CaseStudy.database.entity.UserLog;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Slf4j
@@ -44,6 +47,7 @@ public class AuthenticatedUserService {
             return null;
         }
     }
+
 
     // This will be used by almost everyone in the project to get the user_id for the loged in user
     // you can simplty autowire in the authenticated user service and call this function simialr to DAO call

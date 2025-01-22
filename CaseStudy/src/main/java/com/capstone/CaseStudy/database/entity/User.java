@@ -1,5 +1,6 @@
 package com.capstone.CaseStudy.database.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -51,13 +52,19 @@ public class User {
     @Column(name = "image")
     private String image;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserLog> userLogs;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> sentMessages;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> receivedMessages;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserActivity> userActivities;
 

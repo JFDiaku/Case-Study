@@ -3,7 +3,9 @@ package com.capstone.CaseStudy.controller;
 import com.capstone.CaseStudy.database.dao.MessageDAO;
 import com.capstone.CaseStudy.database.dao.UserActivityDAO;
 import com.capstone.CaseStudy.database.dao.UserDAO;
+import com.capstone.CaseStudy.database.dao.UserLogDAO;
 import com.capstone.CaseStudy.database.entity.Activity;
+import com.capstone.CaseStudy.database.entity.Message;
 import com.capstone.CaseStudy.database.entity.User;
 import com.capstone.CaseStudy.database.entity.UserActivity;
 import com.capstone.CaseStudy.security.AuthenticatedUserService;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Controller
@@ -33,6 +37,9 @@ public class IndexController {
     AuthenticatedUserService authenticatedUserService;
 
     @Autowired
+    UserLogDAO userLogDAO;
+
+    @Autowired
     UserActivityDAO userActivityDAO;
 
     @GetMapping("/dashboard")
@@ -45,6 +52,8 @@ public class IndexController {
 //        find current users activities
         List<Activity> activities = userActivityDAO.findUserActivities(loggedInUser);
         Integer userCount = userDAO.findAll().size();
+
+
 
 //       find users in the same city or state then combine them into a set
         List<User> stateUsers = userDAO.findUserByState(loggedInUser.getState()) ;
@@ -63,12 +72,19 @@ public class IndexController {
         }
         activeChats = new HashSet<>(chats);
 
+        LocalDateTime lastLogout = userLogDAO.findLastLogout(loggedInUser);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LOG.debug("Last logout: {}", lastLogout.format(formatter));
+
+        List<Message> newMessages = messageDAO.findNewMessages( lastLogout, loggedInUser);
 //      create a hashmap of a suggesterUser and a list of their activities
         Map<User, List<Activity>> userActivityMap = new HashMap<>();
         for (User user : suggestedUsers) {
           List<Activity> activityList = userActivityDAO.findUserActivities(user);
           userActivityMap.put(user, activityList);
         }
+
+        response.addObject("newMessages", newMessages.size());
         response.addObject("apiKey", apiKey);
         response.addObject("activeChats", activeChats);
         response.addObject("suggestedUserActivities", userActivityMap);

@@ -1,5 +1,6 @@
 package com.capstone.CaseStudy.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +20,11 @@ public class SecurityConfig {
     // authentication - the act of checking the users credentials .. meaning is the username and password correct
     // authorization - is what the user can do
 
+    private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
+
+    public SecurityConfig(CustomLogoutSuccessHandler customLogoutSuccessHandler) {
+        this.customLogoutSuccessHandler = customLogoutSuccessHandler;
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -38,8 +44,10 @@ public class SecurityConfig {
                 .requestMatchers("/messages").authenticated()
                 .requestMatchers("/activities").authenticated()
                 .requestMatchers("/search").authenticated()
+                .requestMatchers("/ws/**", "/topic/**", "/app/**").permitAll()
                 // Allow all other requests without authentication
                 .anyRequest().permitAll()
+
         );
 
         // this section specifies where our login page is
@@ -58,6 +66,7 @@ public class SecurityConfig {
                 .invalidateHttpSession(true)
                 // this is the acutal URL this is implemented by spring security and we are just specifying the get mapping for it
                 .logoutUrl("/logout")
+                .logoutSuccessHandler(customLogoutSuccessHandler)
                 // where does the user go after they have been logged out
                 // this is a URL that we have implemented somewhere in our project or controllers
                 .logoutSuccessUrl("/login")

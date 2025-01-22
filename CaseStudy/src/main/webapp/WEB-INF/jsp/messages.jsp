@@ -38,32 +38,30 @@
                          </div>
 
                          <div class="accordion-body show" id="new-messages" >
-
-
-
-                             <div class="chat-card">
-                                 <img src="https://randomuser.me/api/portraits/men/25.jpg" alt="">
+                            <c:forEach var="entry" items="${newMessages}">
+                                <c:set var="user" value="${entry.key}" />
+                                <c:set var="message" value="${entry.value}" />
+                                <div class="chat-card" onclick="changeReceiver(${user.id})">
+                                 <img src="${user.image}"  alt="" onerror="this.src='../../pub/images/profile.png';">
                                  <div class="details">
-                                     <p>Micheal Myers</p>
-                                     <p>Hello There, im micheal and you suck</p>
-                                 </div>
-                             </div>
+                                     <p>${user.firstName} ${user.lastName}</p>
 
-                             <div class="chat-card">
-                                 <img src="https://randomuser.me/api/portraits/men/25.jpg" alt="">
-                                 <div class="details">
-                                     <p>Micheal Myers</p>
-                                     <p>Hello There, im micheal and you suck</p>
+                                     <p>${message}</p>
                                  </div>
-                             </div>
+                                </div>
 
-                             <div class="chat-card">
-                                 <img src="https://randomuser.me/api/portraits/men/25.jpg" alt="">
-                                 <div class="details">
-                                     <p>Micheal Myers</p>
-                                     <p>Hello There, im micheal and you suck</p>
-                                 </div>
-                             </div>
+                             </c:forEach>
+
+
+<%--                             <div class="chat-card">--%>
+<%--                                 <img src="https://randomuser.me/api/portraits/men/25.jpg" alt="">--%>
+<%--                                 <div class="details">--%>
+<%--                                     <p>Micheal Myers</p>--%>
+<%--                                     <p>Hello There, im micheal and you suck</p>--%>
+<%--                                 </div>--%>
+<%--                             </div>--%>
+
+
 
 
 
@@ -85,45 +83,20 @@
 
                          <div class="accordion-body show" id="active-chats" >
 
-                             <div class="chat-card">
-                                 <img src="https://randomuser.me/api/portraits/men/25.jpg" alt="">
+                             <c:forEach var="entry" items="${userMessages}">
+                                <c:set var="user" value="${entry.key}" />
+                                <c:set var="message" value="${entry.value}" />
+                                <div class="chat-card" onclick="changeReceiver(${user.id})">
+                                 <img src="${user.image}"  alt="" onerror="this.src='../../pub/images/profile.png';">
                                  <div class="details">
-                                     <p>Micheal Myers</p>
-                                     <p>Hello There, im micheal and you suck</p>
-                                 </div>
-                             </div>
+                                     <p>${user.firstName} ${user.lastName}</p>
 
-                             <div class="chat-card">
-                                 <img src="https://randomuser.me/api/portraits/men/25.jpg" alt="">
-                                 <div class="details">
-                                     <p>Micheal Myers</p>
-                                     <p>Hello There, im micheal and you suck</p>
+                                     <p>${message}</p>
                                  </div>
-                             </div>
+                                </div>
 
-                             <div class="chat-card">
-                                 <img src="https://randomuser.me/api/portraits/men/25.jpg" alt="">
-                                 <div class="details">
-                                     <p>Micheal Myers</p>
-                                     <p>Hello There, im micheal and you suck</p>
-                                 </div>
-                             </div>
+                             </c:forEach>
 
-                             <div class="chat-card">
-                                 <img src="https://randomuser.me/api/portraits/men/25.jpg" alt="">
-                                 <div class="details">
-                                     <p>Micheal Myers</p>
-                                     <p>Hello There, im micheal and you suck</p>
-                                 </div>
-                             </div>
-
-                             <div class="chat-card">
-                                 <img src="https://randomuser.me/api/portraits/men/25.jpg" alt="">
-                                 <div class="details">
-                                     <p>Micheal Myers</p>
-                                     <p>Hello There, im micheal and you suck</p>
-                                 </div>
-                             </div>
 
 
 
@@ -176,18 +149,18 @@
 
                          <div class="bottom">
                              <textarea name="" placeholder="Type Something...." id="chat-input" maxlength="200" rows="2"></textarea>
-                             <button id="send-chat">
-                                 <img src="../../pub/images/send.png" alt="">
+                             <button id="send-chat" onclick="sendMessage()">
+                                 <img src="../../pub/images/send.png"  alt="">
                              </button>
                          </div>
                      </div>
 
                      <div class="current-chat-detail">
                          <div class="top">
-                             <a href="./User.html" class="current-chat">
-                                 <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="">
-                                 <p class="name" >Sarah Simmons</p>
-                                 <p class="location">Austin, TX</p>
+                             <a href="./User.html" id="current-chat" class="current-chat">
+                                 <img id="current-chat-image" src="https://randomuser.me/api/portraits/women/65.jpg"  alt="" onerror="this.src='../../pub/images/profile.png';">
+                                 <p id="current-chat-name"  class="name" >Sarah Simmons</p>
+                                 <p id="current-chat-location" class="location">Austin, TX</p>
                              </a>
                          </div>
 
@@ -213,12 +186,16 @@
 
      </div>
  </div>
+<input value="${userId}" style="display:none" id="loggedInUserId">/>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         $("#messagesLink").addClass("active");
         $("#messagesLink .dash-icon").addClass("active");
     });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="../../pub/js/messages.js"></script>
 
 </body>
 </html>

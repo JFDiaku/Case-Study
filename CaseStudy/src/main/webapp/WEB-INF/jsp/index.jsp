@@ -58,7 +58,7 @@
                     <p class="card-title">New messages</p>
                     <div class="card-detail">
                         <img src="../../pub/images/chat.png" alt="">
-                        <p>3</p>
+                        <p>${newMessages}</p>
                     </div>
                 </div>
 
@@ -108,14 +108,6 @@
                 <div class="right">
 
                     <div class="top">
-<%--                        <iframe--%>
-<%--                                class="map-box"--%>
-<%--                                loading="lazy"--%>
-<%--                                allowfullscreen--%>
-<%--                                referrerpolicy="no-referrer-when-downgrade"--%>
-<%--                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC34EHvYqI7XXT6JHl4AhpgyA6q0stNmHQ--%>
-<%--                  &q=${user.latitude},${user.longitude}&radius=200">--%>
-<%--                        </iframe>--%>
                         <div id="map"></div>
                     </div>
 
