@@ -1,5 +1,5 @@
 # Case-Study
-🚀 GOPlAY 2.0
+🚀 GOPlAY 2.0  
 📖 Overview
 GoPlay is a full-stack web application designed to connect local athletes for real-time messaging and event coordination
 
