@@ -4,7 +4,7 @@ GoPlay is a full-stack web application designed to connect local athletes for re
 
 🏗️ Technologies Used  
 Backend: Java 21, Spring Boot, Hibernate, Lombok, JSP, RESTful APIs, WebSocket, Spring Security, Spring Data JPA  
-Frontend: HTML5, CSS3, JavaScript, jQuery, Google Maps API , HTML 5 Geolocation API  , JSTL
+Frontend: HTML5, CSS3, JavaScript, jQuery, AJAX, Google Maps API , HTML 5 Geolocation API  , JSTL
 Database: MySQL, , JPA (Hibernate ORM)  
 Security: Spring Security (Role-Based Access Control, Authentication & Authorization)
 Design Patterns:MVC (Model-View-Controller)   
