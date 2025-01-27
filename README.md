@@ -27,9 +27,9 @@ View activity groups and their members
 
 
 ✨Upcoming features  
-Friend system
-User Map view (display the users as icons on a map)
-group chats 
+Friend system  
+User Map view (display the users as icons on a map)  
+group chats   
 
 🗄️ Database Model  
 ![er diagram](https://github.com/user-attachments/assets/275a56a8-98f6-4695-90e3-c6e55cdc613c)
