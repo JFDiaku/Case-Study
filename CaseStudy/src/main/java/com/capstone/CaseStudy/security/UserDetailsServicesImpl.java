@@ -52,14 +52,19 @@ public class UserDetailsServicesImpl implements UserDetailsService {
         // convert our user roles into spring granted authorities
         List<GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
 
+        String fullName = user.getFirstName() + " " + user.getLastName();
+
         // the person logged into the application is called the principal
-        return new org.springframework.security.core.userdetails.User(user.getEmail(),
+        return new CustomUserDetails(user.getEmail(),
                 user.getPassword(),
+                springRoles,
                 accountIsEnabled,
                 accountNonExpired,
                 credentialsNonExpired,
                 accountNonLocked,
-                springRoles);
+                user.getImage(),
+                fullName,
+                user.getFirstName());
     }
 
     public List<GrantedAuthority> buildGrantAuthorities(List<UserRole> userRoles) {

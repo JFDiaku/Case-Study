@@ -33,6 +33,11 @@
                        </c:forEach>
                     </div>
                 </div>
+
+                <a class="chat-btn" href="/messages/${user.id}">
+                    <img src="../../pub/images/chat.png">
+                    <p>Send message</p>
+                </a>
             </div>
 
             <div class="">

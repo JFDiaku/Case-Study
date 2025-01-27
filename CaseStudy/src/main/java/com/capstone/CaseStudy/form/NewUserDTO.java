@@ -32,4 +32,8 @@ public class NewUserDTO {
     private boolean terms;
 
 
+    private Double longitude;
+    private Double latitude;
+
+
 }

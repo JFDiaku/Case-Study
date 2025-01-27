@@ -31,13 +31,15 @@
                          <div class="accordion-header">
                              <p>New Messages</p>
 
-                             <button id="toggle-new-messages">
-                                 <img src="../../pub/images/down.png" onclick=toggleNewMessages() alt="">
+                             <button id="toggle-new-messages" >
+                                 <img src="../../pub/images/down.png" class="<c:if test='${empty newMessages}'>show</c:if>"
+                                      onclick=toggleNewMessages() alt="">
                              </button>
 
                          </div>
 
-                         <div class="accordion-body show" id="new-messages" >
+                         <div class="accordion-body <c:if test='${not empty newMessages}'>show</c:if>" id="new-messages" >
+
                             <c:forEach var="entry" items="${newMessages}">
                                 <c:set var="user" value="${entry.key}" />
                                 <c:set var="message" value="${entry.value}" />
@@ -121,6 +123,7 @@
 
                          <div class="" id="messages">
 
+
                              <!-- <div class="outgoing singleMessage">
                                <div class="message-body">
                                  <p>Hello There How are you.</p>
@@ -157,10 +160,11 @@
 
                      <div class="current-chat-detail">
                          <div class="top">
-                             <a href="./User.html" id="current-chat" class="current-chat">
-                                 <img id="current-chat-image" src="https://randomuser.me/api/portraits/women/65.jpg"  alt="" onerror="this.src='../../pub/images/profile.png';">
-                                 <p id="current-chat-name"  class="name" >Sarah Simmons</p>
-                                 <p id="current-chat-location" class="location">Austin, TX</p>
+                             <a href="/user/${recipient.id}" id="current-chat" class="current-chat">
+                                 <img id="current-chat-image" src="${recipient.image}"  alt=""
+                                      onerror="this.src='../../pub/images/profile.png';">
+                                 <p id="current-chat-name"  class="name" >${recipient.firstName} ${recipient.lastName}</p>
+                                 <p id="current-chat-location" class="location">${recipient.city}, ${recipient.state}</p>
                              </a>
                          </div>
 
@@ -170,10 +174,9 @@
                              </div>
 
                              <div class=""  id="current-chat-activities">
-                                 <a href="./activities.html">Tennis</a>
-                                 <a href="./activities.html">Hockey</a>
-                                 <a href="./activities.html">Swimming</a>
-                                 <a href="./activities.html">Yoga</a>
+                                 <c:forEach var="activity" items="${recipientActivities}">
+                                 <a href="/activities">${activity.name}</a>
+                                 </c:forEach>
                              </div>
                          </div>
 
@@ -187,6 +190,7 @@
      </div>
  </div>
 <input value="${userId}" style="display:none" id="loggedInUserId">/>
+<input value="${recipient.id}" style="display:none" id="recipientId">/>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         $("#messagesLink").addClass("active");

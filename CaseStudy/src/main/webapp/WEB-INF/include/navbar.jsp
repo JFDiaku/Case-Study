@@ -29,9 +29,9 @@
 
 
         <div class="user-box" id="user-box">
-            <img src="../../pub/images/user.jpg" alt="" class="user-img">
+            <img src="<sec:authentication property="principal.image" />" alt="" onerror="this.src='../../pub/images/profile.png';" class="user-img">
             <div class="user-welcome">
-                <p>Hi, Jeff</p>
+                <p>Hi, <sec:authentication property="principal.firstName" /></p>
                 <p id="current-date">Sunday, June 25, 2024</p>
             </div>
         </div>
@@ -45,7 +45,7 @@
         <div class="top-nav-btns">
 
             <div class="toggle-dropdown" >
-                <p><sec:authentication property="principal.username"/></p>
+                <p><sec:authentication property="principal.fullName" /></p>
                 <button class="drop-button" id="drop-button" onclick="toggleDropdown()">
                     <img src="../../pub/images/down.png" alt="">
                 </button>
@@ -53,7 +53,7 @@
 
             <div class="dropdown-menu" id="dropdown">
 
-                <a href="./account.html" class="top-nav-btn">
+                <a href="/account" class="top-nav-btn">
                     Account
                     <img src="../../pub/images/account.png" alt="">
                 </a>

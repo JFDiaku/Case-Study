@@ -57,6 +57,8 @@ public class LoginController {
             user.setEmail(form.getEmail());
             user.setFirstName(form.getFirstName());
             user.setLastName(form.getLastName());
+            user.setLongitude(form.getLongitude());
+            user.setLatitude(form.getLatitude());
 
             // first we need to ecrypt the incoming password before saving it to the database
             // the password in the form is in plain text but we want to save to the database encrypted

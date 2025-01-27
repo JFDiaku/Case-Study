@@ -77,6 +77,7 @@ public class IndexController {
         LOG.debug("Last logout: {}", lastLogout.format(formatter));
 
         List<Message> newMessages = messageDAO.findNewMessages( lastLogout, loggedInUser);
+        newMessages.removeIf(message -> message.getSender() == loggedInUser);
 //      create a hashmap of a suggesterUser and a list of their activities
         Map<User, List<Activity>> userActivityMap = new HashMap<>();
         for (User user : suggestedUsers) {

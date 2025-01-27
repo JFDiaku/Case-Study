@@ -31,7 +31,9 @@
             </form>
 
             <div class="search-results">
-                <p class="title">Search results</p>
+                <p class="title">Search results <c:if test="${not empty resultUsers and not empty param.query}">
+                 for ${param.query}
+                </c:if></p>
                 <div class="search-result-cards">
                     <c:if test="${empty resultUsers and not empty param.query}">
                         <p style="font-size: 25px;font-weight: 200" >No results for ${param.query} </p>

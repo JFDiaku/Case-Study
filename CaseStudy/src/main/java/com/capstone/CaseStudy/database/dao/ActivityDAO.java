@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ActivityDAO extends JpaRepository<Activity, Long> {
-    @Query("Select a from Activity a where LOWER(a.name) = :activityName ")
+    @Query("Select a from Activity a where LOWER(a.name) = lower(:activityName) ")
     Activity findActivityByName(String activityName);
 
     @Query("Select a from Activity a")

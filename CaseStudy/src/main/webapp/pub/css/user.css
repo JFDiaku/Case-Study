@@ -8,12 +8,51 @@
     gap: 4rem;
 }
 
-.user_image{
-    width: 90%;
-    max-height: 250px;
-    border-radius: 50%;
+
+.inner.User .left{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 }
 
+.user_image{
+    width: 250px;
+    height: auto;
+    min-height: 250px;
+    object-fit: cover;
+    object-position: center;
+    max-height: 250px;
+    border-radius: 20px;
+    background-color: var(--glass_back);
+    padding: 10px;
+}
+
+.chat-btn{
+    display: flex;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 2rem;
+    margin-right: auto;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--glass_back);
+    transition: all .3s ease-in-out;
+}
+
+.chat-btn:hover{
+    transform: scale(1.05);
+}
+
+.chat-btn img{
+    height: 25px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
 .user_name{
     font-size: 30px;
 }
@@ -91,6 +130,8 @@
 
 .mutual-card img{
     width:80px;
+    max-height: 80px;
+    min-height: 80px;
     border-radius: 50%;
 }
 
@@ -103,8 +144,6 @@
     color: white;
     padding: 1rem .5rem;
     border-radius: 20px;
-    transition: all .3s ease-in-out;
-    width: fit-content;
     text-align: center;
     justify-items: center;
     background-color: var(--black-glass);

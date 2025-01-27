@@ -55,10 +55,14 @@
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
+    margin-top: 2rem;
 }
 
 .search-result-card img{
     width:80px;
+    min-height: 80px;
+    max-height: 80px;
+    object-fit: cover;
     border-radius: 50%;
 }
 

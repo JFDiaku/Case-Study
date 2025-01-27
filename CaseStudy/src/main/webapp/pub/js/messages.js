@@ -1,15 +1,39 @@
 let currentReceiverId = null;
 let loggedInUserId = null
+let lastDate = null;
 let debounceTimer;
+
+$(document).ready(function() {
+    function getLastNumberFromUrl() {
+       const path = window.location.pathname; // Get the path (e.g., "/messages/4")
+       const segments = path.split('/');      // Split the path into parts
+       return segments.pop();                // Get the last segment
+   }
+
+    const userId = getLastNumberFromUrl();;
+
+
+    if(userId != null && userId != "messages"){
+       changeReceiver(userId);
+    }else{
+        const recipientId = $("#recipientId").val();
+        changeReceiver(recipientId);
+    }
+
+
+});
 
 function changeReceiver(userId){
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
 
-        currentReceiverId = userId;
-        loggedInUserId = $("#loggedInUserId").val();
-        console.log("user ID: " + loggedInUserId);
+        currentReceiverId = Number(userId);
+        console.log("current recipient:" + currentReceiverId);
+
+        loggedInUserId = Number($("#loggedInUserId").val());
         const currentChat = $("#current-chat");
+
+        console.log("current user:" + loggedInUserId);
         const currentChatImage = $("#current-chat-image");
         const currentChatName = $("#current-chat-name");
         const currentChatLocation = $("#current-chat-location");
@@ -21,7 +45,7 @@ function changeReceiver(userId){
                   data: { userId: userId },
                   success: function(response) {
                     // Handle the list of activities in the response
-                    console.log('Now chatting with ', response.user.firstName);
+
 
                     currentChat.attr("href", "/user/" + response.user.id);
                     currentChatImage.attr("src", response.user.image );
@@ -36,7 +60,16 @@ function changeReceiver(userId){
                     });
                     messages.empty();
                     response.messages.forEach(function(message){
-                        console.log(message)
+                        let date = new Date(message.createdAt);
+                        let formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+                        let currentDay = date.toLocaleDateString([], { weekday: 'long' });
+
+                        if (lastDate !== currentDay) {
+                                messages.append(`<p class="date-separator">${currentDay} ${formattedTime}</p>`);
+                                lastDate = currentDay;
+                        }
+
+
                         if(message.sender.id === currentReceiverId){
                             messages.append(`
                             <div class="incoming singleMessage">
@@ -44,7 +77,7 @@ function changeReceiver(userId){
                                  <p>${message.message}</p>
                                </div>
                                <div class="message-details">
-                                 <p>${message.createdAt}</p>
+                                 <p>${formattedTime}</p>
                                  <p>${message.sender.firstName}</p>
                                  <img src="${message.sender.image}" alt="" onerror="this.src='../../pub/images/profile.png';">
                            </div>
@@ -56,9 +89,9 @@ function changeReceiver(userId){
                                      <p>${message.message}</p>
                                    </div>
                                    <div class="message-details">
-                                     <p>${message.createdAt}</p>
+                                     <p>${formattedTime}</p>
                                      <p>${message.sender.firstName}</p>
-                                     <img src="${message.sender.image}" alt="">
+                                     <img src="${message.sender.image}" onerror="this.src='../../pub/images/profile.png';" alt="">
                                </div>
                                 `)
                         }
@@ -136,34 +169,36 @@ function sendMessage() {
 function showMessage(message) {
     console.log('New message received:', message);
     const messages = $("#messages");
-
     // Append the new message to the chat, depending on whether it's incoming or outgoing
-    if (message.sender.id === currentReceiverId) {
+    let date = new Date(message.createdAt);
+    let formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+
+
+
+    if(message.sender.id === currentReceiverId){
         messages.append(`
-            <div class="incoming singleMessage">
-                <div class="message-body">
-                    <p>${message.message}</p>
-                </div>
-                <div class="message-details">
-                    <p>${message.createdAt}</p>
-                    <p>${message.sender.firstName}</p>
-                    <img src="${message.sender.image}" alt="" onerror="this.src='../../pub/images/profile.png';">
-                </div>
-            </div>
-        `);
-    } else {
+        <div class="incoming singleMessage">
+           <div class="message-body">
+             <p>${message.message}</p>
+           </div>
+           <div class="message-details">
+             <p>${formattedTime}</p>
+             <p>${message.sender.firstName}</p>
+             <img src="${message.sender.image}" alt="" onerror="this.src='../../pub/images/profile.png';">
+       </div>
+        `)
+    }else{
         messages.append(`
             <div class="outgoing singleMessage">
-                <div class="message-body">
-                    <p>${message.message}</p>
-                </div>
-                <div class="message-details">
-                    <p>${message.createdAt}</p>
-                    <p>${message.sender.firstName}</p>
-                    <img src="${message.sender.image}" alt="">
-                </div>
-            </div>
-        `);
+               <div class="message-body">
+                 <p>${message.message}</p>
+               </div>
+               <div class="message-details">
+                 <p>${formattedTime}</p>
+                 <p>${message.sender.firstName}</p>
+                 <img src="${message.sender.image}" onerror="this.src='../../pub/images/profile.png';" alt="">
+           </div>
+            `)
     }
 
     // Optionally, scroll to the bottom of the messages container

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -55,9 +56,59 @@ public class MessageController {
         List<Message> newMessages = messageDAO.findNewMessages( lastLogout, loggedInUser);
         Map<User, String> newMessageMap = new HashMap<>();
 
+
+
+
         for(Message message : newMessages) {
             User user = message.getSender();
-            newMessageMap.put(user, message.getMessage());
+            if (user != loggedInUser ) {
+                newMessageMap.put(user, message.getMessage());
+            }
+        }
+        response.setViewName("messages");
+        for (User user : activeChats) {
+            String message = messageDAO.getLastMessage(user.getId());
+            userMessages.put(user, message);
+        }
+
+        Map.Entry<User, String> firstEntry = userMessages.entrySet().iterator().next();
+
+        User recipient = firstEntry.getKey();
+        List<Activity> userActivities = userActivityDAO.findUserActivities(recipient);
+        List<Message> messages = messageDAO.findMessagesBetweenUsers(loggedInUser, recipient);
+
+
+        response.addObject("recipient", recipient);
+        response.addObject("recipientActivities", userActivities);
+        response.addObject("recipientMessages", messages);
+        response.addObject("newMessages", newMessageMap);
+        response.addObject("userId", loggedInUser.getId());
+        response.addObject("activeChats", activeChats);
+        response.addObject("userMessages", userMessages);
+        return response;
+    }
+
+    @GetMapping("/messages/{userId}")
+    public ModelAndView MessageUserPage() {
+        ModelAndView response = new ModelAndView();
+
+        User loggedInUser = authenticatedUserService.loadCurrentUser();
+        Set<User> activeChats = messageDAO.findActiveChats(loggedInUser);
+        activeChats.remove(loggedInUser);
+
+
+        Map<User, String> userMessages = new HashMap<>();
+        LocalDateTime lastLogout = userLogDAO.findLastLogout(loggedInUser);
+        List<Message> newMessages = messageDAO.findNewMessages( lastLogout, loggedInUser);
+        Map<User, String> newMessageMap = new HashMap<>();
+
+
+
+        for(Message message : newMessages) {
+            User user = message.getSender();
+            if (user != loggedInUser ) {
+                newMessageMap.put(user, message.getMessage());
+            }
         }
         response.setViewName("messages");
         for (User user : activeChats) {
@@ -66,13 +117,14 @@ public class MessageController {
         }
 
 
-
         response.addObject("newMessages", newMessageMap);
         response.addObject("userId", loggedInUser.getId());
         response.addObject("activeChats", activeChats);
         response.addObject("userMessages", userMessages);
         return response;
     }
+
+
 
 
     @GetMapping("/messages/user/")

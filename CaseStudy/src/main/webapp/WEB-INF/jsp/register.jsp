@@ -96,7 +96,7 @@
             </div>
 
             <div class="inputBox terms" >
-                <input type="checkbox" name="terms" required>
+                <input type="checkbox" name="terms" id="terms" onchange="setLocation()" required>
                 <label class="formLabel" ><span class="show-terms">!</span> Terms and Conditions</label>
                 <p class="conditions">
                     By using GoPlay's services, you agree to grant GoPlay permission to collect, store, and use your personal information, including but not limited to your name and location. This information will be used to enhance your experience, and improve the platform.
@@ -108,6 +108,8 @@
                         <p class="error" >${error.getDefaultMessage()}</p>
                     </c:forEach>
                 </c:if>
+                <input id="longitude" style="display: none" name="longitude" >
+                <input id="latitude" style="display: none" name="latitude">
             </div>
 
             <c:if test="${bindingResult.hasGlobalErrors()}">
@@ -128,6 +130,8 @@
     </div>
 
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="../../pub/js/register.js"></script>
 
 </body>
 

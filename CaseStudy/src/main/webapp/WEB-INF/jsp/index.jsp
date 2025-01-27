@@ -117,12 +117,12 @@
 
                             <c:forEach var="activeChat" items="${activeChats}">
 
-                                <div class="player">
+                                <a href="/messages/${activeChat.id}" class="player">
                                   <img src="${activeChat.image}" alt="" onerror="this.src='../../pub/images/profile.png';">
                                   <div class="name">
                                     ${activeChat.firstName}
                                   </div>
-                                </div>
+                                </a>
                             </c:forEach>
                         </div>
                     </div>
