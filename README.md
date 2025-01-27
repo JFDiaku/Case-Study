@@ -26,7 +26,8 @@ Add and remove activities
 View activity groups and their members 
 
 
-✨Upcoming features  
+✨Upcoming
+Mobile UI  
 Friend system  
 User Map view (display the users as icons on a map)  
 group chats   
