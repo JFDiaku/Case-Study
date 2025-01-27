@@ -1,6 +1,37 @@
 # Case-Study
-![login](https://github.com/user-attachments/assets/1d7e7d72-572d-49b8-be76-821e7732ae1f)
+🚀 GOPlAY 2.0
+📖 Overview
+GoPlay is a full-stack web application designed to connect local athletes for real-time messaging and event coordination
 
+🏗️ Technologies Used
+Backend: Java 21, Spring Boot, Hibernate, Lombok, Spring Security, Spring Data JPA
+Frontend: HTML5, CSS3, JavaScript, jQuery, Google Maps api , HTML 5 Geolocation API
+Database: MySQL
+Security: Spring Boot Security
+Design Patterns:MVC (Model-View-Controller) 
+Testing: JUnit
+Build & Deployment: Maven, Docker
+
+✨ Features
+🔑 Authentication & User Management
+Login, Sign Up, and Logout with proper validation
+Role-based access: USER and ADMIN roles
+Admins can:
+create new activities
+
+💡 Idea Management
+Users can:
+Create a profile
+View other users and their approximate location
+Message other Users
+Add and remove activities 
+
+LOGIN 
+![login](https://github.com/user-attachments/assets/1d7e7d72-572d-49b8-be76-821e7732ae1f)
+✅ Custom Validations
+Email uniqueness check
+Form validation with regex patterns (passwords, emails)
+Empty/blank input prevention with UI messages
 
 
 ![register](https://github.com/user-attachments/assets/88591d02-9e0c-44e5-81e7-f038e1aa1b12)
